@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import { useState, useEffect, useRef, FormEvent } from "react";
 
-export function Question() {
+export function Question({data, onAnswerUpdate, numberOfQuestions, activeQuestion, onSetStep}: any) {
   const nextClickHandler = (e: FormEvent) => {};
 
   return (
