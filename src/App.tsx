@@ -38,7 +38,6 @@ export function App() {
     loadQuest();
   },[step === 2]);
  
-
   return (
     <div className="App">
       {step === 1 && <Start onQuizStart={quizStartHandler}/>}

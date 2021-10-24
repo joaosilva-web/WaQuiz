@@ -62,7 +62,6 @@ export function Question({
     }
   };
 
-
   useEffect(() => {
     const findCheckedInput = radiosWrapper.current.querySelector('input:checked');
     if(findCheckedInput) {
