@@ -21,7 +21,7 @@ export function App() {
   const [step, setStep] =useState(1);
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const [data, setData] = useState<Question[]>([] as Question[]);
+  const [data, setData] = useState<Question[]>([]);
 
   const quizStartHandler = () => {
     setStep(2);
@@ -44,10 +44,10 @@ export function App() {
       {step === 1 && <Start onQuizStart={quizStartHandler}/>}
       {step === 2 && <Question
         data={data}
-        onsAnswersUpdate={setAnswers}
+        onAnswerUpdate={setAnswers}
         numberOfQuestions={data.length}
         activeQuestion={activeQuestion}
-        onSetActiveQuestions={setActiveQuestion}
+        onSetActiveQuestion={setActiveQuestion}
         onSetStep={setStep}
       />}
     </div>
