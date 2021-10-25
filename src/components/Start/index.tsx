@@ -16,7 +16,7 @@ export function Start({ onQuizStart }:any) {
           id="outlined-number"
           type="number"
           InputLabelProps={{
-            shrink: true,
+            shrink: true, 
           }}
           onChange={(event) => localStorage.setItem("questionsAmount",event.target.value)}
           />

@@ -5,6 +5,7 @@ import { api } from "./services/api";
 import "./app.css";
 import { End } from "./components/End";
 import { QuestionsAnsweredContext, QuestionsAnsweredProvider } from "./contexts/questionsAnsweredContext";
+import { Modal } from "./components/Modal";
 
 interface ApiReceived {
   response_code: number;
@@ -27,8 +28,9 @@ export function App() {
   
   const [data, setData] = useState<Question[]>([]);
   const [time, setTime] = useState(0);
+  const [showModal, setShowModal] = useState(false)
 
-  const { answers } = useContext(QuestionsAnsweredContext)
+  const { answers, setAnswers} = useContext(QuestionsAnsweredContext)
 
   useEffect(() => {
     if(step === 3) {
@@ -45,7 +47,11 @@ export function App() {
 
 
   const finishClickHandler = () => {
-
+    setActiveQuestion(0);
+    setAnswers([]);
+    setStep(0);
+    setTime(0);
+    localStorage.removeItem("questionAmount");
   }
 
   useEffect(() => {
@@ -54,10 +60,10 @@ export function App() {
         `api.php?amount=${localStorage.getItem('questionsAmount')}`
         );
         setData(data.results);
-        console.log(data.results);
     }
     loadQuest();
-  },[step === 2]);
+    console.log("data app: ", data)
+  },[step === 1]);
  
   return (
     <QuestionsAnsweredProvider>
@@ -75,9 +81,15 @@ export function App() {
       {step === 3 && <End 
       results={answers}
       data={data}
-      // onFinish={finishClickHandler}
-      // onAnswersCheck={}
+      onFinish={finishClickHandler}
+      onAnswersCheck={() => setShowModal(true)}
       time={time}
+      />}
+
+      {showModal && <Modal
+        onClose={() => setShowModal(false)}
+        results={answers}
+        data={data}
       />}
     </div>
     </QuestionsAnsweredProvider>

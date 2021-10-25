@@ -51,7 +51,6 @@ export function Question({
       return setError("Please select one option");
     }else {
       setAnswers([...answers,{q: data[activeQuestion].question, a: selected}]);
-      console.log(answers);
     }
     setSelected("");
     if (activeQuestion < numberOfQuestions - 1) {
