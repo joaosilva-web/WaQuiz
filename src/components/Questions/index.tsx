@@ -4,7 +4,8 @@ import {
   CardContent,
   Typography,
 } from "@material-ui/core";
-import { useState, useEffect, useRef, FormEvent } from "react";
+import { useState, useEffect, useRef, FormEvent, useContext } from "react";
+import { QuestionsAnsweredContext } from "../../contexts/questionsAnsweredContext";
 
 interface Question {
   category: string;
@@ -17,7 +18,6 @@ interface Question {
 
 interface QuestionProps {
   data: Question[];
-  onAnswerUpdate: any;
   numberOfQuestions: any;
   activeQuestion: any;
   onSetActiveQuestion: any;
@@ -26,7 +26,6 @@ interface QuestionProps {
 
 export function Question({
   data,
-  onAnswerUpdate,
   numberOfQuestions,
   activeQuestion,
   onSetActiveQuestion,
@@ -35,6 +34,7 @@ export function Question({
   const [selected, setSelected] = useState("");
   const [error, setError] = useState("");
   const radiosWrapper = useRef<any>();
+  const {answers, setAnswers} = useContext(QuestionsAnsweredContext);
   
   
 
@@ -49,11 +49,10 @@ export function Question({
     console.log("selected",selected);
     if (selected === "") {
       return setError("Please select one option");
+    }else {
+      setAnswers([...answers,{q: data[activeQuestion].question, a: selected}]);
+      console.log(answers);
     }
-    onAnswerUpdate((prevState: any) => [
-      ...prevState,
-      { q: data[activeQuestion].question, a: selected },
-    ]);
     setSelected("");
     if (activeQuestion < numberOfQuestions - 1) {
       onSetActiveQuestion(activeQuestion + 1);
