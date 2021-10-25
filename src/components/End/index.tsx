@@ -2,6 +2,8 @@ import { Button, Card, CardContent, Typography } from '@material-ui/core';
 import React, { useContext, useEffect, useState } from 'react';
 import { QuestionsAnsweredContext } from '../../contexts/questionsAnsweredContext';
 
+import { formatTime } from "../../utils";
+
 
 export function End({ data, time }: any) {
     const [correctAnswers, setCorrectAnswers] = useState(0);
@@ -30,7 +32,7 @@ export function End({ data, time }: any) {
                         <Typography variant="h3">Your results</Typography>
                         <Typography variant="body1">{correctAnswers} of {data.length}</Typography>
                         <Typography variant="body1"><strong>{Math.floor((correctAnswers / parseInt(localStorage.getItem("questionsAmount") as string)) * 100)}%</strong></Typography>
-                        <Typography variant="body1" component="strong"><strong>Your time:</strong> {time}</Typography>
+                        <Typography variant="body1" component="strong"><strong>Your time:</strong> {formatTime(time)}</Typography>
                         {/* <Button variant="contained" onClick={onAnswersCheck}>Check your answers</Button> */}
                     </div>
                 </CardContent>
