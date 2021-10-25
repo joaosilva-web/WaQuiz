@@ -66,7 +66,7 @@ export function Question({
     if(findCheckedInput) {
         findCheckedInput.checked = false;
     }
-  },[changeHandler])
+  },[data[activeQuestion]])
 
   return (
     <Card sx={{maxWidth: 784, display: 'flex', justifyContent: 'center', margin: "0 auto", textAlign: "center"}}>
