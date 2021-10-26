@@ -21,7 +21,7 @@ export function Modal({ onClose, data }: ModalProps) {
 
   return (
     <Dialog onClose={onClose} open={open} className="modal" sx={{overflowY: "scroll"}}>
-      <S.ModalCard>
+      <S.ModalCard sx={{overflowY: "scroll"}}>
         <header className="modal-card-header">
           <Typography variant="h2">Your answers</Typography>
           <button className="close" onClick={onClose}>
