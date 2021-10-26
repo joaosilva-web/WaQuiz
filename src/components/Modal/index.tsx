@@ -1,17 +1,16 @@
 import { useContext } from "react";
 import { QuestionsAnsweredContext } from "../../contexts/questionsAnsweredContext";
-import { Dialog, Typography } from "@material-ui/core";
+import { Dialog, DialogProps, Typography } from "@material-ui/core";
 import CloseIcon from "@mui/icons-material/Close";
 
 import * as S from "./styles";
 
 interface ModalProps {
   onClose: any;
-  results: any;
   data: any;
 }
 
-export function Modal({ onClose, results, data }: ModalProps) {
+export function Modal({ onClose, data }: ModalProps) {
   const { answers } = useContext(QuestionsAnsweredContext);
 
   let open = false;
@@ -21,7 +20,7 @@ export function Modal({ onClose, results, data }: ModalProps) {
   }
 
   return (
-    <Dialog onClose={onClose} open={open} className="modal">
+    <Dialog onClose={onClose} open={open} className="modal" sx={{overflowY: "scroll"}}>
       <S.ModalCard>
         <header className="modal-card-header">
           <Typography variant="h2">Your answers</Typography>

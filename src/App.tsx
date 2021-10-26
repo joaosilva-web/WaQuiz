@@ -9,7 +9,7 @@ import {
   QuestionsAnsweredProvider,
 } from "./contexts/questionsAnsweredContext";
 import { Modal } from "./components/Modal";
-import { ThemeProvider } from "@mui/material";
+import { DialogProps, ThemeProvider } from "@mui/material";
 import { theme } from "./theme";
 import logo from "./logo.svg"
 
@@ -35,6 +35,14 @@ export function App() {
   const [data, setData] = useState<Question[]>([]);
   const [time, setTime] = useState(0);
   const [showModal, setShowModal] = useState(false);
+
+  const [scroll, setScroll] = useState<DialogProps['scroll']>('paper');
+  const [open, setOpen] = useState(false);
+  const handleOpen = (scrollType: DialogProps['scroll']) => {
+      setScroll(scrollType);
+      setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
 
   const { answers, setAnswers } = useContext(QuestionsAnsweredContext);
 
@@ -100,7 +108,6 @@ export function App() {
           {showModal && (
             <Modal
               onClose={() => setShowModal(false)}
-              results={answers}
               data={data}
             />
           )}

@@ -4,6 +4,7 @@ import {
   CardContent,
   Container,
   Dialog,
+  DialogProps,
   TextField,
   ThemeProvider,
   Typography,
@@ -15,6 +16,7 @@ import * as S from "./styles";
 import { theme } from "../../theme";
 
 export function Start({ onQuizStart }: any) {
+  const [scroll, setScroll] = useState<DialogProps['scroll']>('paper');
   localStorage.setItem("questionsAmount", "1");
   const questions: any = localStorage.getItem("questions");
   let questionsStorage =
@@ -25,8 +27,9 @@ export function Start({ onQuizStart }: any) {
     localStorage.getItem("result") !== null ? JSON.parse(result) : [];
 
   const [open, setOpen] = useState(false);
-  const handleOpen = () => {
+  const handleOpen = (scrollType: DialogProps['scroll']) => {
     if (questionsStorage.length > 0) {
+      setScroll(scrollType);
       setOpen(true);
     } else {
       alert("You didn't even answer a quiz");
@@ -90,9 +93,9 @@ export function Start({ onQuizStart }: any) {
           </CardContent>
         </Card>
 
-        <Button onClick={handleOpen}>Last Report</Button>
+        <Button onClick={() => handleOpen('body')}>Last Report</Button>
 
-        <Dialog onClose={handleClose} open={open} className="modal">
+        <Dialog onClose={handleClose} open={open} className="modal" scroll={scroll}>
           <S.ModalCard>
             <header className="modal-card-header">
               <Typography variant="h2">Your Last Report</Typography>

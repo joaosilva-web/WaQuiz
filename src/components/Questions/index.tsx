@@ -1,6 +1,7 @@
 import { Button, Card, CardContent, Typography } from "@material-ui/core";
 import { useState, useEffect, useRef, FormEvent, useContext } from "react";
 import { QuestionsAnsweredContext } from "../../contexts/questionsAnsweredContext";
+import * as S from "./styles";
 
 interface Question {
   category: string;
@@ -79,20 +80,20 @@ export function Question({
             variant="h2"
             dangerouslySetInnerHTML={{ __html: data[activeQuestion].question }}
           ></Typography>
-          <div className="control" ref={radiosWrapper}>
+          <div className="control" ref={radiosWrapper} style={{display: "flex", justifyContent: "space-evenly", margin: "18px", flexWrap: "wrap", gap: "10px"}}>
             {data[activeQuestion].incorrect_answers
               .concat(data[activeQuestion].correct_answer)
               .sort()
               .map((choice, i) => (
-                <label className="radio" key={i}>
+                <S.LabelChoice className="radio" key={i}>
                   <input
                     type="radio"
                     name="answer"
                     value={choice}
                     onChange={changeHandler}
                   />
-                  {choice}
-                </label>
+                  <p dangerouslySetInnerHTML={{__html: choice}}/>
+                </S.LabelChoice>
               ))}
           </div>
           {error && (

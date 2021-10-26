@@ -67,7 +67,7 @@ export function End({ data, time, onFinish, onAnswersCheck }: any) {
             <Button
               variant="contained"
               sx={{ width: "45%" }}
-              onClick={onAnswersCheck}
+              onClick={() => onAnswersCheck()}
             >
               Check answers
             </Button>
