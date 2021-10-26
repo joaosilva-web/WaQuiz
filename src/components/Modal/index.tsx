@@ -14,9 +14,6 @@ interface ModalProps {
 export function Modal({ onClose, results, data }: ModalProps) {
   const { answers } = useContext(QuestionsAnsweredContext);
 
-  console.log("results modal:", answers);
-  console.log("data modal:", data);
-
   let open = false;
 
   if (onClose) {

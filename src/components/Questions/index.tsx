@@ -39,7 +39,6 @@ export function Question({
   };
 
   const nextClickHandler = (e: FormEvent) => {
-    console.log("selected", selected);
     if (selected === "") {
       return setError("Please select one option");
     } else {

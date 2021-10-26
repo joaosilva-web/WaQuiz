@@ -70,7 +70,6 @@ export function App() {
       setData(data.results);
     }
     loadQuest();
-    console.log("data app: ", data);
   }, [step === 1]);
 
   return (

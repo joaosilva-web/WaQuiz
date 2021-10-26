@@ -13,23 +13,19 @@ import { formatTime } from "../../utils";
 export function End({ data, time, onFinish, onAnswersCheck }: any) {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const { answers } = useContext(QuestionsAnsweredContext);
-  console.log("results", answers);
+  
 
   useEffect(() => {
     let correct = 0;
     answers.forEach((result: any, index: any) => {
-      // console.log("item",result.a);
-      console.log("resposta", data[index].correct_answer);
       if (result.a === data[index].correct_answer) {
         correct++;
-        console.log("corrrect:", correct);
       }
     });
     setCorrectAnswers(correct);
     localStorage.setItem("result", JSON.stringify(answers));
     localStorage.setItem("questions", JSON.stringify(data));
   }, []);
-  // console.log("correctAnswers:", correctAnswers);
 
   return (
     <Card sx={{ minWidth: "784px" }}>

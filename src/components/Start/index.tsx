@@ -19,12 +19,10 @@ export function Start({ onQuizStart }: any) {
   const questions: any = localStorage.getItem("questions");
   let questionsStorage =
     localStorage.getItem("questions") !== null ? JSON.parse(questions) : [];
-  console.log("questionStorage", questionsStorage);
 
   const result: any = localStorage.getItem("result");
   let resultStorage =
     localStorage.getItem("result") !== null ? JSON.parse(result) : [];
-  console.log("resultStorage", resultStorage);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
