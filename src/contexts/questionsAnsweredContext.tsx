@@ -1,28 +1,24 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
-
-
-
-interface QuestionsContextData {
-   
-}
 
 interface QuestionsProvider {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 export const QuestionsAnsweredContext = createContext({} as any);
 
 export function QuestionsAnsweredProvider(props: QuestionsProvider) {
-   
-    const [answers, setAnswers] = useState<any[]>([] as any[]);
-  
-    
-    
-        
-   return(
-    <QuestionsAnsweredContext.Provider value={{answers, setAnswers}} >
-        {props.children}
+  const [answers, setAnswers] = useState<any[]>([] as any[]);
+
+  function resetAnswers() {
+    setAnswers([0]);
+  }
+
+  return (
+    <QuestionsAnsweredContext.Provider
+      value={{ answers, setAnswers, resetAnswers }}
+    >
+      {props.children}
     </QuestionsAnsweredContext.Provider>
-   )
+  );
 }
