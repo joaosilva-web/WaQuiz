@@ -39,7 +39,7 @@ export function Modal({ onClose, results, data }: ModalProps) {
                 <Typography variant="body1">
                   <strong
                     dangerouslySetInnerHTML={{ __html: result.q }}
-                  ></strong>
+                  />
                 </Typography>
                 <S.AnswerCard
                   variant="body1"
@@ -47,16 +47,12 @@ export function Modal({ onClose, results, data }: ModalProps) {
                     result.a === data[i].correct_answer ? "success" : "error"
                   }
                   dangerouslySetInnerHTML={{ __html: result.a }}
-                >
-                  Your answer:
-                </S.AnswerCard>
+                />
                 {result.a !== data[i].correct_answer && (
                   <S.AnswerCard
                     variant="body1"
                     dangerouslySetInnerHTML={{ __html: data[i].correct_answer }}
-                  >
-                    Correct answer:{" "}
-                  </S.AnswerCard>
+                  />
                 )}
               </li>
             ))}
